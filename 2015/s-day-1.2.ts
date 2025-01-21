@@ -6,8 +6,8 @@ function findBasementPosition(direction: string): number {
 
   let i: number;
   for (i = 0; i < directionLength; i++) {
-    if (direction[i] === "(") floor = floor + 1;
-    else if (direction[i] === ")") floor = floor - 1;
+    if (direction[i] === "(") floor++;
+    else if (direction[i] === ")") floor--;
 
     if (floor === -1) break;
   }
@@ -15,9 +15,4 @@ function findBasementPosition(direction: string): number {
   return i + 1;
 }
 
-// Test
-console.log(findBasementPosition(")")); // 1
-console.log(findBasementPosition("()())")); // 5
-
-// Input
 console.log(findBasementPosition(day1Input));

@@ -8,32 +8,15 @@ function calculateWrapperSurface(l: number, w: number, h: number): number {
   return 2 * x + 2 * y + 2 * z + minArea;
 }
 
-function cleanInput(input: string) {
-  input = input.trim().replaceAll("\n", "x");
-  let arr = input.split("x").map((value) => Number(value));
-
-  let newArr: number[][] = [];
-  let tempArr: number[] = [];
-  let indexCounter = 0;
-  for (let i = 0; i < arr.length; i++) {
-    tempArr[indexCounter] = arr[i];
-
-    if (tempArr.length === 3) {
-      newArr.push(tempArr);
-      tempArr = [];
-      indexCounter = 0;
-    } else indexCounter++;
-  }
-
-  return newArr;
+function cleanInput(input: string): number[][] {
+  let arr = input.trim().split("\n");
+  return arr.map((line) => line.split("x").map(Number));
 }
 
 const data = cleanInput(day2Input);
 let sum = 0;
 for (let i = 0; i < data.length; i++) {
-  let l = data[i][0];
-  let w = data[i][1];
-  let h = data[i][2];
+  let [l, w, h] = data[i].values();
   sum += calculateWrapperSurface(l, w, h);
 }
 
